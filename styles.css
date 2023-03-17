@@ -1,0 +1,126 @@
+@import url("/vars.css");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+
+body{
+    background-color: var(--main-bg-color);
+}
+.navbar{
+    position: relative;
+    top: 0%;
+    width: 100%;
+    height: 80px;
+    border-bottom: 1px solid var(--main-border-color);
+    padding: 1em 1em;
+}
+.logo{
+    width: 51px;
+    height: 51px;
+    background-color: var(--main-logo-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: var(--large-fontsize);
+}
+.fundo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    width: 100vw;
+}
+.alerta{
+    font-size: var(--tiny-fontsize);
+    padding: 1em;
+    margin-bottom: 40px;
+    border-radius: 2em;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+}
+.fill{
+    background-color: var(--main-redalert-color);
+    color: var(--main-redfont-color);
+}
+.noword{
+    background-color: var(--main-yellowalert-color);
+    color: var(--main-yellowfont-color);
+}
+.done{
+    background-color: var(--main-greenalert-color);
+    color: var(--main-greenfont-color);
+}
+.playagain{
+    text-transform: uppercase;
+    background-color: var(--main-logo-color);
+    color: var(--main-blackfont-color);
+}
+.hide{
+    display: none !important;
+}
+.board{
+    width: 330px;
+    height: 397px;
+    gap: 5px;
+    margin-bottom: 40px;
+}
+.board-row{
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+.box{
+    width: 62px;
+    height: 62px;
+    border: 1px solid var(--main-border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--main-lightfont-color);
+    text-transform: uppercase;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: var(--large-fontsize);
+}
+.right-letter{
+    background-color: var(--main-greenkey-color) !important;
+}
+.relocate-letter{  
+    background-color: var(--main-yellowkey-color) !important;
+}
+.miss-letter{
+    background-color: var(--main-greykey-color) !important;
+}
+.teclado{
+    color: var( --main-lightfont-color);
+    width: 475px;
+    height: 184px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.teclado-row{
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+.letter{
+    width: 43px;
+    height: 58px;
+    background-color: var(--main-key-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: var(--medium-fontsize);
+}
+.special-key{
+    width: 83px;
+    font-size: var(--small-fontsize);
+}
