@@ -7,7 +7,9 @@
 
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="scripts/app.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
     
     <title>Wordle</title>
 </head>
@@ -73,43 +75,43 @@
         </div>
         <div class="teclado">
             <div class="row row-1">
-                <button type="button" class="letter letter-q">q</button>
-                <button type="button" class="letter letter-w">w</button>
-                <button type="button" class="letter letter-e">e</button>
-                <button type="button" class="letter letter-r">r</button>
-                <button type="button" class="letter letter-t">t</button>
-                <button type="button" class="letter letter-y">y</button>
-                <button type="button" class="letter letter-u">u</button>
-                <button type="button" class="letter letter-i">i</button>
-                <button type="button" class="letter letter-o">o</button>
-                <button type="button" class="letter letter-p">p</button>
+                <button type="button" class="letter letter-q" value="q">q</button>
+                <button type="button" class="letter letter-w" value="w">w</button>
+                <button type="button" class="letter letter-e" value="e">e</button>
+                <button type="button" class="letter letter-r" value="r">r</button>
+                <button type="button" class="letter letter-t" value="t">t</button>
+                <button type="button" class="letter letter-y" value="y">y</button>
+                <button type="button" class="letter letter-u" value="u">u</button>
+                <button type="button" class="letter letter-i" value="i">i</button>
+                <button type="button" class="letter letter-o" value="o">o</button>
+                <button type="button" class="letter letter-p" value="p">p</button>
             </div>
             <div class="row row-2">
-                <button type="button" class="letter letter-a">a</button>
-                <button type="button" class="letter letter-s">s</button>
-                <button type="button" class="letter letter-d">d</button>
-                <button type="button" class="letter letter-f">f</button>
-                <button type="button" class="letter letter-g">g</button>
-                <button type="button" class="letter letter-h">h</button>
-                <button type="button" class="letter letter-j">j</button>
-                <button type="button" class="letter letter-k">k</button>
-                <button type="button" class="letter letter-l">l</button>
+                <button type="button" class="letter letter-a" value="a">a</button>
+                <button type="button" class="letter letter-s" value="s">s</button>
+                <button type="button" class="letter letter-d" value="d">d</button>
+                <button type="button" class="letter letter-f" value="f">f</button>
+                <button type="button" class="letter letter-g" value="g">g</button>
+                <button type="button" class="letter letter-h" value="h">h</button>
+                <button type="button" class="letter letter-j" value="j">j</button>
+                <button type="button" class="letter letter-k" value="k">k</button>
+                <button type="button" class="letter letter-l" value="l">l</button>
             </div>
             <div class="row row-3">
                 <button type="button" class="letter letter-enter special-key">enter</button>
-                <button type="button" class="letter letter-z">z</button>
-                <button type="button" class="letter letter-x">x</button>
-                <button type="button" class="letter letter-c">c</button>
-                <button type="button" class="letter letter-v">v</button>
-                <button type="button" class="letter letter-b">b</button>
-                <button type="button" class="letter letter-n">n</button>
-                <button type="button" class="letter letter-m">m</button>
+                <button type="button" class="letter letter-z" value="z">z</button>
+                <button type="button" class="letter letter-x" value="x">x</button>
+                <button type="button" class="letter letter-c" value="c">c</button>
+                <button type="button" class="letter letter-v" value="v">v</button>
+                <button type="button" class="letter letter-b" value="b">b</button>
+                <button type="button" class="letter letter-n" value="n">n</button>
+                <button type="button" class="letter letter-m" value="m">m</button>
                 <button type="button" class="letter letter-delete special-key">delete
                 </button>
             </div>
         </div>
-        <div class="alerta playagain hide">
-            Jogar novamente
+        <div class="playagain">
+            <button type="button" class="playagain-btn">Jogar novamente</button> 
         </div>
     </div>
 </body>
