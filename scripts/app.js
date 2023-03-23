@@ -57,13 +57,13 @@ const showNotification = ({ backgroundColor, message }) => {
 }
 
 const showPlayAgainButton = () => {
-    const buttonPlayAgain = document.querySelector('.playagain .playagain-btn')
-    buttonPlayAgain.style.display = 'block'
+    const buttonPlayAgain = document.querySelector('.playagain')
+    buttonPlayAgain.classList.remove('hide')
 }
 
 const hidePlayAgainButton = () => {
-    const buttonPlayAgain = document.querySelector('.playagain-btn')
-    buttonPlayAgain.style.display = 'none'
+    const buttonPlayAgain = document.querySelector('.playagain')
+    buttonPlayAgain.classList.add('hide')
 }
 
 const resetInitialGame = (game) => {
@@ -81,7 +81,7 @@ const resetBoardGameLetter = () => {
 }
 
 const resetKeyboardLetter = () => {
-    document.querySelectorAll('.teclado .row .box').forEach((element) => {
+    document.querySelectorAll('.teclado .row .letter').forEach((element) => {
         element.style.backgroundColor = ''
     })
 }

@@ -32,26 +32,6 @@ body{
     height: calc(100vh - 80px);
     width: 100vw;
 }
-.alerta{
-    font-size: var(--tiny-fontsize);
-    padding: 1em;
-    margin-bottom: 40px;
-    border-radius: 2em;
-    font-family: "Inter", sans-serif;
-    font-weight: 700;
-}
-.fill{
-    background-color: var(--main-redalert-color);
-    color: var(--main-redfont-color);
-}
-.noword{
-    background-color: var(--main-yellowalert-color);
-    color: var(--main-yellowfont-color);
-}
-.done{
-    background-color: var(--main-greenalert-color);
-    color: var(--main-greenfont-color);
-}
 .playagain{
     margin-bottom: 40px;
 }
@@ -91,15 +71,6 @@ body{
     font-family: "Inter", sans-serif;
     font-weight: 700;
     font-size: var(--large-fontsize);
-}
-.right-letter{
-    background-color: var(--main-greenkey-color) !important;
-}
-.relocate-letter{  
-    background-color: var(--main-yellowkey-color) !important;
-}
-.miss-letter{
-    background-color: var(--main-greykey-color) !important;
 }
 .teclado{
     color: var( --main-lightfont-color);
