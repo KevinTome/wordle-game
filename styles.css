@@ -53,9 +53,17 @@ body{
     color: var(--main-greenfont-color);
 }
 .playagain{
+    margin-bottom: 40px;
+}
+.playagain-btn{
+    font-size: var(--tiny-fontsize);
+    padding: 1em;
+    border-radius: 2em;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    border: none;
     text-transform: uppercase;
     background-color: var(--main-logo-color);
-    color: var(--main-blackfont-color);
 }
 .hide{
     display: none !important;
