@@ -23,6 +23,7 @@ const NOTIFICATION_INVALID_PRESSED_KEY = 'Invalid Pressed Key'
 const NOTIFICATION_REACH_MAX_ATTEMPTS = 'Reach Max Attempts'
 const NOTIFICATION_REACH_MAX_LETTERS_PER_ROW = 'Reach Max letter per row'
 const NOTIFICATION_WORD_NOT_IN_DATABASE = 'Word not in database'
+const NOTIFICATION_GAME_OVER_GUESS_RIGHT = 'You guessed right! Game over!'
 
 const gameInitConfig = {
     DB: [],
@@ -44,13 +45,13 @@ const toastifyDefaultConfig = {
     }
 }
 
-const getRandomWord = (wordList) => {
-    const wordsCount = wordList.length
-    const shuffleIndex = Math.floor(Math.random() * wordsCount)
-    return wordList[shuffleIndex].toLowerCase()
+const getOneRandomWord = (wordsList) => {
+    const countWords  = wordsList.length
+    const shuffleIndex = Math.floor(Math.random() * countWords )
+    return wordsList[shuffleIndex].toLowerCase()
 }
 
-//
+
 const showNotification = ({ backgroundColor, message }) => {
     Toastify({ ...toastifyDefaultConfig, text: message, backgroundColor }).showToast()
 }
@@ -66,35 +67,35 @@ const hidePlayAgainButton = () => {
 }
 
 const resetInitialGame = (game) => {
-    game.rightGuess = getOneRandomWord(game.database)
+    game.rightGuess = getOneRandomWord(game.DB)
     game.currentRow = 1
-    game.currentLetterPosition = 1
+    game.currentLetterPos = 1
     game.currentGuess = ''
 }
 
 const resetBoardGameLetter = () => {
-    document.querySelectorAll('.board .row .letter').forEach((element) => {
+    document.querySelectorAll('.board .row .box').forEach((element) => {
         element.textContent = ''
         element.style.backgroundColor = ''
     })
 }
 
 const resetKeyboardLetter = () => {
-    document.querySelectorAll('.teclado .row .letter').forEach((element) => {
+    document.querySelectorAll('.teclado .row .box').forEach((element) => {
         element.style.backgroundColor = ''
     })
 }
 //
-const getGameBordLetter = (currentRow, currentLetterPos) => {
+const getGameBoardLetter = (currentRow, currentLetterPos) => {
     return document.querySelector(`.board .row-${currentRow} .letter-${currentLetterPos}`)
 }
 
-const isBackspacePressed = (pressedKey) => {
+const isBackspaceKeyPressed = (pressedKey) => {
     return [KEY_BACKSPACE, KEY_DELETE].includes(pressedKey)
 }
 
-const isEnterPressed = (pressedKey) => {
-    return pressedKey == KEY_ENTER
+const isEnterKeyPressed = (pressedKey) => {
+    return pressedKey === KEY_ENTER
 }
 
 const isOneAlphabetLetter = (pressedKey) => {
@@ -102,7 +103,7 @@ const isOneAlphabetLetter = (pressedKey) => {
 }
 
 const isValidKeyPressed = (pressedKey) => {
-    return isEnterPressed(pressedKey) || isBackspacePressed(pressedKey) || isOneAlphabetLetter(pressedKey)
+    return isEnterKeyPressed(pressedKey) || isBackspaceKeyPressed(pressedKey) || isOneAlphabetLetter(pressedKey)
 }
 
 const isGuessInDatabase = (guess, database) => {
@@ -185,7 +186,7 @@ const removeLetterFromBoard = (game) => {
 const displayLetterOnTheBoard = (game, pressedKey) => {
     const { currentRow, currentLetterPos } = game
 
-    const element = getGameBordLetter(currentRow, currentLetterPos)
+    const element = getGameBoardLetter(currentRow, currentLetterPos)
     element.textContent = pressedKey
 
     game.currentGuess += pressedKey
@@ -207,7 +208,7 @@ const nextGame = (game) => {
 }
 
 const checkGuess = (game) => {
-    const { DB, currentLetterPos, currentGuess } = game
+    const { DB, currentLetterPos, currentGuess, rightGuess} = game
 
     if (isCurrentGuessEmpty(currentGuess)) {
         return showNotification({ message: NOTIFICATION_EMPTY_GUESS, backgroundColor: TOASTIFY_ERROR_COLOR })
@@ -223,9 +224,6 @@ const checkGuess = (game) => {
 
     if (isCorrectGuess(currentGuess, rightGuess)) {
         displayColor(game)
-        setTimeout(() => alert(NOTIFICATION_GAME_OVER_GUESS_RIGHT), 250)
-        return NOTIFICATION_GAME_OVER_GUESS_RIGHT
-
         showPlayAgainButton()
         return showNotification({ message: NOTIFICATION_GAME_OVER_GUESS_RIGHT, backgroundColor: TOASTIFY_SUCCESS_COLOR })
     }
@@ -246,15 +244,15 @@ const onKeyPressed = (pressedKey, game) => {
         return showNotification({ message: NOTIFICATION_INVALID_PRESSED_KEY, backgroundColor: TOASTIFY_ERROR_COLOR })
     }
 
-    if (isBackspacePressed(pressedKey) && !isCurrentGuessEmpty(currentGuess)) {
+    if (isBackspaceKeyPressed(pressedKey) && !isCurrentGuessEmpty(currentGuess)) {
         return removeLetterFromBoard(game)
     }
 
-    if (isBackspacePressed(pressedKey) && isCurrentGuessEmpty(currentGuess)) {
+    if (isBackspaceKeyPressed(pressedKey) && isCurrentGuessEmpty(currentGuess)) {
         return showNotification({ message: NOTIFICATION_BACKSPACE_WHEN_EMPTY_GUESS, backgroundColor: TOASTIFY_WARNING_COLOR })
     }
 
-    if (isEnterPressed(pressedKey)) {
+    if (isEnterKeyPressed(pressedKey)) {
         return checkGuess(game)
     }
 
@@ -302,21 +300,22 @@ const onKeydown = (game) => {
     document.addEventListener('keydown', (event) => onKeyPressed(event.key, game))
 }
 
-const getWordsDB = async () => {
-    return fetch('./json/database.json')
-        .then((response) => response.json())
-        .then(({ words }) => words)
-        .catch(() => {})
+const loadWords = async () => {
+    return fetch('json/database.json')
+                    .then((response) => response.json())
+                    .then(({ words }) => words)
+                    .catch(() => [])
 }
 
 const start = () => {
     window.onload = async () => {
-        const DB = await getWordsDB()
-        const game = {...gameInitConfig, DB}
+        const DB = await loadWords()
+        const rightGuess = getOneRandomWord(DB)
+
+        const game = {...gameInitConfig, DB, rightGuess}
         console.log(DB)
-        console.log('get one random word: ', getRandomWord(DB))
+        console.log('get one random word: ', rightGuess)
         
-        document.addEventListener('keydown', (event) => onKeyPressed(event.key, game))
         onKeydown(game)
         onLetterButtonPressed(game)
         onEnterButtonPressed(game)
